@@ -1,0 +1,133 @@
+Practical No  1
+a.Aim: Study and enlist the basic functions used for graphics in c/c++/python language. 
+                 Give an example for each of them.
+/* Circle function */
+#include<graphics.h>
+#include<conio.h>
+void main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:\\TC\\BGI");
+circle(150,100,100);
+getch();
+closegraph();
+}
+
+Output:
+ 
+
+
+
+
+
+/* Line function */
+#include<graphics.h>
+#include<conio.h>
+void main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:\\TC\\BGI");
+line(100,100,200,200);
+getch();
+closegraph();
+}
+Output:
+ 
+
+
+
+
+
+
+
+
+/* Rectangle function */
+#include<graphics.h>
+#include<conio.h>
+void main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:\\TC\\BGI");
+rectangle(50,150,300,300);
+getch();
+closegraph();
+}
+Output:
+
+ 
+
+
+
+
+
+
+/* Circle Animation */
+#include<graphics.h>
+#include<conio.h>
+#include<dos.h>
+void main()
+{
+int gd=DETECT,gm,i;
+initgraph(&gd,&gm,"c:\\TC\\BGI");
+setcolor(RED);
+setbkcolor(2);
+for(i=0;i<50;i++)
+{
+circle(150+i,100,100);
+delay(1000);
+cleardevice();
+}
+getch();
+closegraph();
+}
+Output:
+ 
+/* Line Animation */
+#include<graphics.h>
+#include<conio.h>
+#include<dos.h>
+void main()
+{
+int gd=DETECT,gm,i;
+initgraph(&gd,&gm,"c:\\TC\\BGI");
+setcolor(RED);
+setbkcolor(2);
+for(i=0;i<50;i++)
+{
+line(100+i,100,200,200);
+delay(200);
+cleardevice();
+}
+getch();
+closegraph();
+}
+Output:
+ 
+
+
+b.Aim: Draw a co-ordinate axis at the center of the screen */
+#include<graphics.h>
+#include<conio.h>
+void main()
+{
+int gd=DETECT,gm,a,b,c,d;
+initgraph(&gd,&gm,"c:\\TC\\BGI");
+a=getmaxx();
+b=getmaxy();
+c=a/2;
+d=b/2;
+line(c,0,c,b);
+line(0,d,a,d);
+getch();
+closegraph();
+}
+
+
+
+
+
+
+
+
+Output:
+ 

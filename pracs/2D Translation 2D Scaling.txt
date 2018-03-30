@@ -1,0 +1,110 @@
+Practical No 6
+a.	Write a program to implement 2D Translation.
+/*Translate a point */
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<math.h>
+void main() {
+clrscr();
+float x,y,x1,y1,tx,ty;
+int i,gd=DETECT,gm;
+initgraph(&gd,&gm,"c:/tc/bgi");
+cout<<"Enter x & y values";
+cin>>x>>y;
+putpixel(x,y,15);
+cout<<"Enter the translation in x & y direction";
+cin>>tx>>ty;
+x1=x+tx;
+y1=y+tx;
+putpixel(x1,y1,15);
+getch();
+}
+ 
+/*Translate a Line */
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<math.h>
+void main() {
+clrscr();
+float x1,y1,x2,y2,x3,y3,x4,y4,tx,ty;
+int i,gd=DETECT,gm;
+initgraph(&gd,&gm,"c:/tc/bgi");
+cout<<"Enter x1 & y1 values";
+cin>>x1>>y1;
+cout<<"Enter x2 & y2 values";
+cin>>x2>>y2;
+setcolor(10);
+line(x1,y1,x2,y2);
+cout<<"Enter the translation in x & y direction";
+cin>>tx>>ty;
+x3=x1+tx;
+y3=y1+ty;
+x4=x2+tx;
+y4=y2+ty;
+line(x3,y3,y4,y4);
+getch();
+}
+ 
+b. Write a program to implement 2D Scaling.
+/*Scale a polygon */
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<math.h>
+void main(){
+clrscr();
+float x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6,sx,sy;
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:/tc/bgi");
+cout<<"Enter x1 & y1 values ";
+cin>>x1>>y1;
+cout<<"Enter x2 & y2 values ";
+cin>>x2>>y2;
+cout<<"Enter x3 & y3 values ";
+cin>>x3>>y3;
+line(x1,y1,x2,y2);
+line(x2,y2,x3,y3);
+line(x3,y3,x1,y1);
+cout<<"Enter scale in x & y ";
+cin>>sx>>sy;
+x4=x1*sx;
+y4=y1*sy;
+x5=x2*sx;
+y5=y2*sy;
+x6=x3*sx;
+y6=y3*sy;
+line(x4,y4,x5,y5);
+line(x5,y5,x6,y6);
+line(x6,y6,x4,y4);
+getch(); }
+ 
+
+
+/*Scale a point */
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<math.h>
+void main()
+{
+clrscr();
+float x,y,x1,y1,sx,sy;
+int i,gd=DETECT,gm;
+initgraph(&gd,&gm,"c:/tc/bgi");
+cout<<"Enter x & y values";
+cin>>x>>y;
+putpixel(x,y,RED);
+cout<<"Enter scale in x & y ";
+cin>>sx>>sy;
+x1=x*sx;
+y1=y*sy;
+putpixel(x1,y1,RED);
+getch();
+}
+ 

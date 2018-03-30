@@ -1,0 +1,203 @@
+Practical No 7
+a. Perform 2D Rotation on a given object.
+#include<graphics.h>
+#include<iostream.h>
+#include<math.h>
+#include<conio.h>
+void main()
+{
+int graphdriver=DETECT,graphmode,errorcode;
+int i;
+int x2,y2,x1,y1,x,y,xn,yn;
+double r11,r12,r21,r22,th;
+clrscr();
+cout<<"Enter the 2 line end points:\n";
+cout<<"x1,y1,x2,y2";
+cin>>x1>>y1>>x2>>y2;
+initgraph(&graphdriver,&graphmode,"c:\\tc\\bgi");
+line(x1,y1,x2,y2);
+cout<<"\n\n\n[ Enter the angle";
+cin>>th;
+r11=cos((th*3.1428)/180);
+r12=sin((th*3.1428)/180);
+r21=(-sin((th*3.1428)/180));
+r22=cos((th*3.1428)/180);
+xn=((x2*r11)-(y2*r12));
+yn=((x2*r12)+(y2*r11));
+line(x1,y1,xn,yn);
+getch();
+closegraph();
+}
+   
+
+
+
+
+
+
+b. Program to create a house like figure and perform the following operation
+i. Scaling about the origin followed by translation. 
+ii. Scaling with reference to an arbitrary point.
+iii. Reflect about the line y=mx+c
+#include <iostream.h>
+#include <graphics.h>
+#include <math.h>
+#include <conio.h>
+#include<stdlib.h>
+void reset (int h[][2])
+{
+    int val[9][2] = {
+			{ 50, 50 },{ 75, 50 },{ 75, 75 },{ 100, 75 },
+			{ 100, 50 },{ 125, 50 },{ 125, 100 },{ 87, 125 },{ 50, 100 }
+		    };
+    int i;
+    for (i=0; i<9; i++)
+    {
+	h[i][0] = val[i][0]-50;
+	h[i][1] = val[i][1]-50;
+    }
+}
+void draw (int h[][2])
+{
+    int i;
+    setlinestyle (DOTTED_LINE, 0, 1);
+    line (320, 0, 320, 480);
+    line (0, 240, 640, 240);
+    setlinestyle (SOLID_LINE, 0, 1);
+    for (i=0; i<8; i++)
+	line (320+h[i][0], 240-h[i][1], 320+h[i+1][0], 240-h[i+1][1]);
+    line (320+h[0][0], 240-h[0][1], 320+h[8][0], 240-h[8][1]);
+}
+void rotate (int h[][2], float angle)
+{
+    int i;
+    for (i=0; i<9; i++)
+    {
+	int xnew, ynew;
+	xnew = h[i][0] * cos (angle) - h[i][1] * sin (angle);
+	ynew = h[i][0] * sin (angle) + h[i][1] * cos (angle);
+	h[i][0] = xnew; h[i][1] = ynew;
+    }
+}
+void scale (int h[][2], int sx, int sy)
+{
+    int i;
+    for (i=0; i<9; i++)
+    {
+	h[i][0] *= sx;
+	h[i][1] *= sy;
+    }
+}
+void translate (int h[][2], int dx, int dy)
+{
+    int i;
+    for (i=0; i<9; i++)
+    {
+	h[i][0] += dx;
+	h[i][1] += dy;
+    }
+}
+void reflect (int h[][2], int m, int c)
+{
+	int i;
+	float angle;
+	for (i=0; i<9; i++)
+		h[i][1] -= c;
+	angle = M_PI/2 - atan (m);
+	rotate (h, angle);
+	for (i=0; i<9; i++)
+		h[i][0] = -h[i][0];
+	angle = -angle;
+	rotate (h, angle);
+	for (i=0; i<9; i++)
+		h[i][1] += c;
+}
+ 
+void ini()
+{
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"..\\bgi");
+}
+void dini()
+{
+	getch();
+	closegraph();
+}
+void main()
+{
+ 
+	int h[9][2],sx,sy,x,y,m,c,choice;
+	do
+	{
+		clrscr();
+		cout<<"1. Scaling about the origin.\n";
+		cout<<"2. Scaling about an arbitrary point.\n";
+		cout<<"3. Reflection about the line y = mx + c.\n";
+		cout<<"4. Exit\n";
+		cout<<"Enter the choice: ";
+		cin>>choice;
+		switch(choice)
+		{
+			case 1: cout<<"Enter the x- and y-scaling factors: ";
+				cin>>sx>>sy;
+				ini();
+				reset (h);
+				draw (h);getch();
+				scale (h, sx, sy);
+				cleardevice();
+				draw (h);
+				dini();
+				break;
+ 
+			case 2: cout<<"Enter the x- and y-scaling factors: ";
+				cin>>sx>>sy;
+				cout<<"Enter the x- and y-coordinates of the point: ";
+				cin>>x>>y;
+				ini();
+				reset (h);
+				translate (h, x, y);// Go to arbitrary point
+				draw(h); getch();//Show its arbitrary position
+				cleardevice();
+				translate(h,-x,-y);//Take it back to origin
+				draw(h);
+				getch();
+				cleardevice();
+				scale (h, sx, sy);//Now Scale it
+				draw(h);
+				getch();
+				translate (h, x, y);//Back to Arbitrary point
+				cleardevice();
+				draw (h);
+				putpixel (320+x, 240-y, WHITE);
+				dini();
+				break;
+ 
+			case 3: cout<<"Enter the values of m and c: ";
+				cin>>m>>c;
+				ini();
+				reset (h);
+				draw (h); getch();
+				reflect (h, m, c);
+				cleardevice();
+				draw (h);
+				dini();
+				break;
+ 
+			case 4: exit(0);
+		}
+	}while(choice!=4);
+}
+
+
+
+
+   
+    
+
+
+
+
+
+   
+
+

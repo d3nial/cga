@@ -1,0 +1,133 @@
+Practical No 3
+Aim: - Draw the following basic shapes in the center of the screen
+/*Circle*/
+#include<iostream.h>
+#include<graphics.h>
+#include<conio.h>
+void main()
+{
+int gd=DETECT,gm;
+int x,y,radius=80;
+initgraph(&gd,&gm,"c:\\TC\\BGI");
+x=getmaxx()/2;
+y=getmaxy()/2;
+circle(x,y,radius);
+getch();
+closegraph();
+}
+ 
+
+
+
+
+
+/*Ellipse*/
+
+#include<iostream.h>
+#include<graphics.h>
+#include<conio.h>
+ 
+void main(){
+   int gd = DETECT,gm;
+   int x ,y;
+   initgraph(&gd, &gm, "C:\\TC\\BGI");
+   x = getmaxx()/2;
+   y = getmaxy()/2;
+ 
+   ellipse(x, y, 0, 360, 120, 60);
+ 
+   getch();
+   closegraph();
+   return 0;
+}
+
+ 
+
+
+
+
+
+/*Concentric Circle*/
+
+#include<iostream.h>
+#include<graphics.h>
+#include<conio.h>
+ void main()
+{
+   int gd = DETECT,gm;
+   int x ,y;
+   initgraph(&gd, &gm, "C:\\TC\\BGI");
+   x = getmaxx()/2;
+   y = getmaxy()/2;
+   setcolor(RED);
+   circle(x, y, 30);
+   setcolor(GREEN);
+   circle(x, y, 50);
+   setcolor(YELLOW);
+   circle(x, y, 70);
+   setcolor(BLUE);
+   circle(x, y, 90);
+ 
+   getch();
+   closegraph();
+   }
+
+
+ 
+/*Line*/
+
+#include<iostream.h>
+#include<graphics.h>
+#include<conio.h>
+
+void main()
+ {
+   int gd = DETECT, gm;
+   int x1 = 320, y1 =300;
+   int x2 = 320, y2 =150;
+   initgraph(&gd, &gm, "c:\\tc\\bgi");
+   line(x1, y1, x2, y2);
+   getch();
+   closegraph();
+}
+
+ 
+
+
+
+
+
+
+
+/*Rectangle*/
+
+#include<iostream.h>
+#include<graphics.h>
+#include<conio.h>
+void main()
+{
+   int gd = DETECT, gm;
+ 
+   initgraph(&gd, &gm, "C:\\TC\\BGI");
+ 
+   rectangle(180,200,450,300);
+ 
+   getch();
+   closegraph();
+}
+
+ 
+/*Square*/
+#include<iostream.h>
+#include<graphics.h>
+#include<conio.h>
+void main()
+{
+   int gd = DETECT, gm;
+ 
+   initgraph(&gd, &gm, "C:\\TC\\BGI");
+ 
+   rectangle(250,180,370,300);
+   getch();
+   closegraph();
+} 

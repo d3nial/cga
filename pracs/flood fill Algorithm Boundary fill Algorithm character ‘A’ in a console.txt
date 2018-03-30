@@ -1,0 +1,107 @@
+Practical No 9
+a. Write a program to fill a circle using flood fill Algorithm.
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+void flood_f(int x,int y,int oc,int nc)
+{
+if(getpixel(x,y)==oc)
+{
+putpixel(x,y,nc);
+flood_f(x,y+1,oc,nc);
+flood_f(x-1,y,oc,nc);
+flood_f(x,y-1,oc,nc);
+flood_f(x+1,y,oc,nc);
+flood_f(x+1,y+1,oc,nc);
+flood_f(x-1,y-1,oc,nc);
+flood_f(x+1,y-1,oc,nc);
+flood_f(x-1,y-1,oc,nc);
+}
+};
+void main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:\\tc\\bgi");
+setcolor(9);
+rectangle(50,50,100,100);
+flood_f(60,60,00,14);
+getch();
+closegraph();
+}
+ 
+b. Write a program to fill a circle using Boundary fill Algorithm.
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+void boundryFill(int, int, int, int);
+int midx=319,midy=239;
+void main()
+{
+int gd=DETECT, gm, x,y,r;
+initgraph(&gd,&gm,"c:/tc/bgi");
+cout<<"Enter the center of circle (X,Y) :";
+cin>>x>>y;
+cout<<"Enter the Radius of circle R :";
+cin>>r;
+circle(midx+x,midy-y,r);
+getch();
+boundryFill(midx+x,midy-y,13,15);
+getch();
+closegraph();
+}
+
+void boundryFill(int x,int y,int fill,int boundry)
+{
+if((getpixel(x,y)!=fill)&&(getpixel(x,y)!=boundry))
+{
+putpixel(x,y,fill);
+delay(5);
+boundryFill(x+1,y,fill,boundry);
+boundryFill(x-1,y,fill,boundry);
+boundryFill(x,y+1,fill,boundry);
+boundryFill(x,y-1,fill,boundry);
+}
+}
+ 
+
+
+
+C. extra program display a character ‘A’ in a console.
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+void main()
+{
+int gd,gm,i,j;
+int a[13][9]={
+		{0,0,0,0,1,0,0,0,0},
+		{0,0,0,1,0,1,0,0,0},
+		{0,1,0,0,0,0,1,0,0},
+		{0,1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1,0},
+		{0,1,1,1,1,1,1,1,0},
+		{0,1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1,0},
+		};
+
+detectgraph(&gd,&gm);
+initgraph(&gd,&gm,"c:/tc/bgi");
+
+for(i=0;i<13;i++)
+{
+	for(j=0;j<9;j++)
+	{
+	putpixel(200+j,200+i,15*a[i][j]);
+	}
+}
+getch();
+closegraph();
+}
+ 

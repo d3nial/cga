@@ -1,0 +1,151 @@
+Practical No 10
+a.	Develop a simple text screen saver using graphics function
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <graphics.h>
+#include <conio.h>
+#include <dos.h>
+void main(){
+int gdriver=DETECT,gmode,col=480,row=640,font=4,direction=2,size=8,color=15;
+initgraph(&gdriver,&gmode,"C:\\TC\\BGI");
+cleardevice();
+while(!kbhit()){
+    settextstyle(random(font),random(direction),random(size));
+    setcolor(random(color));
+    outtextxy(random(col),random(row),"Vaikunda");
+    delay(250);
+}
+closegraph();
+}
+Output
+
+ 
+
+
+
+
+b.	Perform smiling face animation using graphic functions
+#include<graphics.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<dos.h>
+main()
+{
+   int gd = DETECT, gm, area, temp1, temp2, left = 25, top = 75;
+   void *p;
+ 
+   initgraph(&gd, &gm, "C:\\TC\\BGI");
+ 
+   setcolor(YELLOW);
+   circle(50, 100, 25);
+   setfillstyle(SOLID_FILL, YELLOW);
+   floodfill(50, 100, YELLOW);
+ 
+   setcolor(BLACK);
+   setfillstyle(SOLID_FILL, BLACK);
+   fillellipse(44, 85, 2, 6);
+   fillellipse(56, 85, 2, 6);
+ 
+   ellipse(50, 100, 205, 335, 20, 9);
+   ellipse(50, 100, 205, 335, 20, 10);
+   ellipse(50, 100, 205, 335, 20, 11);
+ 
+   area = imagesize(left, top, left + 50, top + 50);
+   p = malloc(area);
+ 
+   setcolor(WHITE);
+   settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2);
+   outtextxy(155, 451, "Smiling Face Animation");
+ 
+   setcolor(BLUE);
+   rectangle(0, 0, 639, 449);
+ 
+   while(!kbhit())
+   {
+      temp1 = 1 + random (588);
+      temp2 = 1 + random (380);
+ 
+      getimage(left, top, left + 50, top + 50, p);
+      putimage(left, top, p, XOR_PUT);
+      putimage(temp1 , temp2, p, XOR_PUT);
+      delay(500);
+      left = temp1;
+      top = temp2;
+   }
+ 
+   getch();
+   closegraph();
+   return 0;
+}
+ 
+
+
+
+
+
+c.	Draw the moving car on the screen.
+#include <stdio.h>
+#include <graphics.h>
+#include <conio.h>
+#include <dos.h>
+
+int main() {
+    int gd = DETECT, gm;
+    int i, maxx, midy;
+
+    /* initialize graphic mode */
+    initgraph(&gd, &gm, "c:\\TC\\BGI");
+    /* maximum pixel in horizontal axis */
+    maxx = getmaxx();
+    /* mid pixel in vertical axis */
+    midy = getmaxy()/2;
+ 
+    for (i=0; i < maxx-150; i=i+5) {
+        /* clears screen */
+        cleardevice();
+ 
+        /* draw a white road */
+        setcolor(WHITE);
+        line(0, midy + 37, maxx, midy + 37);
+ 
+        /* Draw Car */
+        setcolor(YELLOW);
+        setfillstyle(SOLID_FILL, RED);
+ 
+        line(i, midy + 23, i, midy);
+        line(i, midy, 40 + i, midy - 20);
+        line(40 + i, midy - 20, 80 + i, midy - 20);
+        line(80 + i, midy - 20, 100 + i, midy);
+        line(100 + i, midy, 120 + i, midy);
+        line(120 + i, midy, 120 + i, midy + 23);
+        line(0 + i, midy + 23, 18 + i, midy + 23);
+        arc(30 + i, midy + 23, 0, 180, 12);
+        line(42 + i, midy + 23, 78 + i, midy + 23);
+        arc(90 + i, midy + 23, 0, 180, 12);
+        line(102 + i, midy + 23, 120 + i, midy + 23);
+        line(28 + i, midy, 43 + i, midy - 15);
+        line(43 + i, midy - 15, 57 + i, midy - 15);
+        line(57 + i, midy - 15, 57 + i, midy);
+        line(57 + i, midy, 28 + i, midy);
+        line(62 + i, midy - 15, 77 + i, midy - 15);
+        line(77 + i, midy - 15, 92 + i, midy);
+        line(92 + i, midy, 62 + i, midy);
+        line(62 + i, midy, 62 + i, midy - 15);
+        floodfill(5 + i, midy + 22, YELLOW);
+        setcolor(BLUE);
+        setfillstyle(SOLID_FILL, DARKGRAY);
+        /*  Draw Wheels */
+        circle(30 + i, midy + 25, 9);
+        circle(90 + i, midy + 25, 9);
+        floodfill(30 + i, midy + 25, BLUE);
+        floodfill(90 + i, midy + 25, BLUE);
+        /* Add delay of 0.1 milli seconds */
+        delay(100);
+    }
+ 
+    getch();
+    closegraph();
+    return 0;
+}
+ 

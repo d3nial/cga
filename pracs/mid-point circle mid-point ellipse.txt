@@ -1,0 +1,112 @@
+Practical No 5
+a. Develop the program for the mid-point circle drawing algorithm.
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<math.h>
+void main()
+{
+float d;
+int i,gd=DETECT,gm,x,y,r;
+cout<<"Enter the radius of circle:\t";
+cin>>r;
+initgraph(&gd,&gm,"c:/tc/bgi");
+x=0;
+y=r;
+d=(5/4)-r;
+do
+{
+putpixel(200+x,200+y,15);
+putpixel(200+y,200+x,13);
+putpixel(200+y,200-x,11);
+putpixel(200+x,200-y,9);
+putpixel(200-x,200-y,7);
+putpixel(200-y,200-x,5);
+putpixel(200-y,200+x,3);
+putpixel(200-x,200+y,1);
+if(d<0)
+{
+d=d+2*x+3;
+}
+else
+{
+d=d+2*(x-y)+5;
+y=y-1;
+}
+x=x+1;
+delay(10);
+}
+while(x<y);
+getch();
+closegraph();
+}
+  
+
+
+b. Develop the program for the mid-point ellipse drawing algorithm.
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<math.h>
+void ellipse_midpoint(int,int,int,int);
+void drawellipse(int,int,int,int);
+int main(){
+int xc,yc,rx,ry;
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:/tc/bgi");
+cout<<"Enter two center coordinate of ellipse :";
+cin>>xc>>yc;
+cout<<"Enter radius of Ellipse(rx) :";
+cin>>rx;
+cout<<"Enter radius of Ellipse(ry) :";
+cin>>ry;
+ellipse_midpoint(xc,yc,rx,ry);
+getch();
+closegraph();
+return 0;
+}
+void ellipse_midpoint(int xc,int yc,int rx,int ry){
+int x=0,y=ry,x2,y2;
+float p1=(ry*ry)-(rx*rx*ry)+(rx*rx)/4;
+int a=2*ry*ry*x;
+int b=2*rx*rx*y;
+while(a<=b){
+drawellipse(xc,yc,x,y);
+x++;
+if(p1<0){
+a=2*ry*ry*x;
+p1=p1+a+(ry*ry);
+}
+else{
+y--;
+a=2*ry*ry*x;
+b=2*rx*rx*y;
+p1=p1+a-b+(ry*ry);}
+drawellipse(xc,yc,x,y);
+delay(10);
+}
+float p2=((ry*ry)*(x+0.5)*(x+0.5))+((rx*rx)*(y-1)*(y-1))-((rx*rx)*(ry*ry));
+a=0;
+b=0;
+while(y>0){
+drawellipse(xc,yc,x,y);
+y--;
+if(p2<0){
+x++;
+a=2*ry*ry*x;
+b=2*rx*rx*y;
+p2=p2+a-b+(rx*rx);}
+else{
+b=2*rx*rx*y;
+p2=p2-b+(rx*rx);}
+drawellipse(xc,yc,x,y);}}
+void drawellipse(int xc,int yc,int x,int y){
+putpixel(xc+x, yc+y, 15);
+putpixel(xc-x, yc+y, 15);
+putpixel(xc+x, yc-y, 15);
+putpixel(xc-x, yc-y, 15);
+}
+ 
+

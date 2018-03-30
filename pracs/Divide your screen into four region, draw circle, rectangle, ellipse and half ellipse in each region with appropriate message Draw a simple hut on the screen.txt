@@ -1,0 +1,67 @@
+Practical No 2
+A. Divide your screen into four region, draw circle, rectangle, ellipse and half ellipse in each region with appropriate message.
+#include<graphics.h>
+#include<conio.h>
+void main() {
+int gd=DETECT,gm,a,b,c,d;
+initgraph(&gd,&gm,"c:\\TC\\BGI");
+a=getmaxx();
+b=getmaxy();
+c=a/2;
+d=b/2;
+line(c,0,c,b);
+line(0,d,a,d);
+circle(450,350,20);
+ellipse(450,150,0,360,25,40);
+rectangle(100,100,200,200);
+ellipse(150,350,1,180,50,40);
+outtextxy(400,400,"circle");
+outtextxy(450,200,"Ellipse");
+outtextxy(150,220,"Rectangle");
+outtextxy(120,360,"Half Ellipse");
+getch();
+getch();
+closegraph();
+}
+Output :
+ 
+
+
+
+
+
+
+
+
+B.Draw a simple hut on the screen
+#include<graphics.h>
+#include<conio.h>
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:\\tc\\bgi");
+
+setcolor(WHITE);
+rectangle(150,180,250,300);
+rectangle(250,180,420,300);
+rectangle(180,250,220,300);
+
+line(200,100,150,180);
+line(200,100,250,180);
+line(200,100,370,100);
+line(370,100,420,180);
+
+setfillstyle(SOLID_FILL,BROWN);
+floodfill(152,182,WHITE);
+floodfill(252,182,WHITE);
+setfillstyle(SLASH_FILL,BLUE);
+floodfill(182,252,WHITE);
+setfillstyle(HATCH_FILL,GREEN);
+floodfill(200,105,WHITE);
+floodfill(210,105,WHITE);
+getch();
+closegraph();
+return 0;
+}
+Output :
+ 
